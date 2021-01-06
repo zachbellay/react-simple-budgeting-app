@@ -228,6 +228,7 @@ export default function App() {
   };
 
   const calculateHousingAllocation = () => {
+    console.log(taxes);
     return Math.trunc(Number((Number(state.numericalHousingPercentage) / 100) * (calculatePostTaxIncome() / 12)));
 
   };
@@ -450,26 +451,26 @@ export default function App() {
                           <option value='montana'>Montana</option>
                           <option value='nebraska'>Nebraska</option>
                           <option value='nevada'>Nevada</option>
-                          <option value='new hampshire'>New Hampshire</option>
-                          <option value='new jersey'>New Jersey</option>
-                          <option value='new mexico'>New Mexico</option>
-                          <option value='new york'>New York</option>
+                          <option value='new_hampshire'>New Hampshire</option>
+                          <option value='new_jersey'>New Jersey</option>
+                          <option value='new_mexico'>New Mexico</option>
+                          <option value='new_york'>New York</option>
                           <option value='north carolina'>North Carolina</option>
                           <option value='north dakota'>North Dakota</option>
                           <option value='ohio'>Ohio</option>
                           <option value='oklahoma'>Oklahoma</option>
                           <option value='oregon'>Oregon</option>
                           <option value='pennsylvania'>Pennsylvania</option>
-                          <option value='rhode island'>Rhode Island</option>
-                          <option value='south carolina'>South Carolina</option>
-                          <option value='south dakota'>South Dakota</option>
+                          <option value='rhode_island'>Rhode Island</option>
+                          <option value='south_carolina'>South Carolina</option>
+                          <option value='south_dakota'>South Dakota</option>
                           <option value='tennessee'>Tennessee</option>
                           <option value='texas'>Texas</option>
                           <option value='utah'>Utah</option>
                           <option value='vermont'>Vermont</option>
                           <option value='virginia'>Virginia</option>
                           <option value='washington'>Washington</option>
-                          <option value='west virginia'>West Virginia</option>
+                          <option value='west_virginia'>West Virginia</option>
                           <option value='wisconsin'>Wisconsin</option>
                           <option value='wyoming'>Wyoming</option>
                         </Select>
