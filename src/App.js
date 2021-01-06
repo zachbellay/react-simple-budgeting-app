@@ -296,7 +296,15 @@ export default function App() {
       state_taxes = 0;
     } else {
       const state_tax_brackets = taxes[state.usState][state.filingStatus].income_tax_brackets;
-      const state_tax_deduction = taxes[state.usState][state.filingStatus]['deductions'][0]['deduction_amount'];
+
+      var state_tax_deduction;
+      if(taxes[state.usState][state.filingStatus]['deductions'].length === 0){
+        state_tax_deduction = 0;
+      }else{
+        const state_tax_deduction = taxes[state.usState][state.filingStatus]['deductions'][0]['deduction_amount'];
+      }      
+
+      
       const state_taxable_income = state.numericalAnnualIncome - state_tax_deduction;
       state_taxes = get_tax(state_tax_brackets, state_taxable_income);
     }
