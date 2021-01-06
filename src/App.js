@@ -301,7 +301,7 @@ export default function App() {
       if(taxes[state.usState][state.filingStatus]['deductions'].length === 0){
         state_tax_deduction = 0;
       }else{
-        const state_tax_deduction = taxes[state.usState][state.filingStatus]['deductions'][0]['deduction_amount'];
+        state_tax_deduction = taxes[state.usState][state.filingStatus]['deductions'][0]['deduction_amount'];
       }      
 
       
