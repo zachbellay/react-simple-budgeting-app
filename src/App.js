@@ -228,7 +228,6 @@ export default function App() {
   };
 
   const calculateHousingAllocation = () => {
-    console.log(taxes);
     return Math.trunc(Number((Number(state.numericalHousingPercentage) / 100) * (calculatePostTaxIncome() / 12)));
 
   };
