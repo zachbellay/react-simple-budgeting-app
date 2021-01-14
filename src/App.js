@@ -429,7 +429,6 @@ export default function App() {
                             id: 'age-native-simple',
                           }}
                         >
-                          <option aria-label="None" value="" />
                           <option value='alabama'>Alabama</option>
                           <option value='alaska'>Alaska</option>
                           <option value='arizona'>Arizona</option>
@@ -510,7 +509,6 @@ export default function App() {
                             id: 'age-native-simple',
                           }}
                         >
-                          <option aria-label="None" value="" />
                           <option value="single">Single</option>
                           <option value="married">Married Filing Jointly</option>
                           <option value="married_separately">Married Filing Separately</option>
