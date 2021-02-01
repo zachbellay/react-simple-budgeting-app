@@ -50,23 +50,28 @@ const useStyles = makeStyles((state) => ({
 
 const defaultMarginalRate = 9.3;
 const defaultPostTaxIncome = 42629;
-const defaultNumericalHousingPercentage = 30;
+const defaultNumericalHousingPercentage = Number(30);
 const defaultNumericalHousingAllocation = Math.trunc(Number((defaultNumericalHousingPercentage / 100) * defaultPostTaxIncome));
-const defaultNumericalUtilitiesPercentage = 5;
+const defaultNumericalUtilitiesPercentage = Number(5);
 const defaultNumericalUtilitiesAllocation = Math.trunc(Number((defaultNumericalUtilitiesPercentage / 100) * defaultPostTaxIncome));
 
-const defaultNumericalFoodPercentage = 10;
+const defaultNumericalFoodPercentage = Number(10);
 const defaultNumericalFoodAllocation = Math.trunc(Number((defaultNumericalFoodPercentage / 100) * defaultPostTaxIncome));
 
-const defaultNumericalSavingsPercentage = 5;
+const defaultNumericalSavingsPercentage = Number(5);
 const defaultNumericalSavingsAllocation = Math.trunc(Number((defaultNumericalSavingsPercentage / 100) * defaultPostTaxIncome));
 
-const defaultNumericalDiscretionaryIncomePercentage = 10;
+const defaultNumericalDiscretionaryIncomePercentage = Number(10);
 const defaultNumericalDiscretionaryIncomeAllocation = Math.trunc(Number((defaultNumericalDiscretionaryIncomePercentage / 100) * defaultPostTaxIncome));
+
+const defaultNumericalDonationIncomePercentage = Number(5);
+const defaultNumericalDonationIncomeAllocation = Math.trunc(Number((defaultNumericalDonationIncomePercentage / 100) * defaultPostTaxIncome));
+
 const defaultFilingStatus = 'single';
 const defaultNumericalAnnualIncome = 47000;
 const defaultAnnualIncome = "$" + String(defaultNumericalAnnualIncome).replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 const defaultUSState = "california";
+
 
 export default function App() {
   const classes = useStyles();
@@ -97,9 +102,24 @@ export default function App() {
     numericalDiscretionaryIncomePercentage: defaultNumericalDiscretionaryIncomePercentage,
     numericalDiscretionaryIncomeAllocation: defaultNumericalDiscretionaryIncomeAllocation,
 
+    numericalDonationIncomePercentage: defaultNumericalDonationIncomePercentage,
+    numericalDonationIncomeAllocation: defaultNumericalDonationIncomeAllocation,
+
   });
   const getAllocatedIncomePercentage = () => {
-    return Math.trunc(state.numericalDiscretionaryIncomePercentage + state.numericalSavingsPercentage + state.numericalFoodPercentage + state.numericalUtilitiesPercentage + state.numericalHousingPercentage);
+    return Math.trunc(state.numericalDiscretionaryIncomePercentage + state.numericalSavingsPercentage + state.numericalFoodPercentage + state.numericalUtilitiesPercentage + state.numericalHousingPercentage + state.numericalDonationIncomePercentage);
+  };
+
+  const updateDonationIncomePercentage = (percentage) => {
+    if (!percentage)
+      return;
+    percentage = String(percentage);
+    percentage = percentage.replace(/[\%]/g, "");
+    setState({
+      ...state,
+      numericalDonationIncomeAllocation: Math.trunc(Number((Number(percentage) / 100) * state.numericalAnnualIncome / 12)),
+      numericalDonationIncomePercentage: Number(percentage)
+    });
   };
 
   const updateDiscretionaryIncomePercentage = (percentage) => {
@@ -227,9 +247,12 @@ export default function App() {
     });
   };
 
+  const calculateDonationAllocation = () => {
+    return Math.trunc(Number((Number(state.numericalDonationIncomePercentage) / 100) * (calculatePostTaxIncome() / 12)));
+  };
+  
   const calculateHousingAllocation = () => {
     return Math.trunc(Number((Number(state.numericalHousingPercentage) / 100) * (calculatePostTaxIncome() / 12)));
-
   };
 
   const calculateUtilitiesAllocation = () => {
@@ -607,6 +630,11 @@ export default function App() {
                   <Grid item>
                     <SliderCard amount={calculateDiscretionaryIncomeAllocation()} lineItem="Wants" lineItemEmoji="🔥" numericalPercentage={state.numericalDiscretionaryIncomePercentage} onChange={updateDiscretionaryIncomePercentage} />
                   </Grid>
+
+                  <Grid item>
+                    <SliderCard amount={calculateDonationAllocation()} lineItem="Giving" lineItemEmoji="❤️" numericalPercentage={state.numericalDonationIncomePercentage} onChange={updateDonationIncomePercentage} />
+                  </Grid>
+
 
                 </Grid>
               </Grid>
