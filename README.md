@@ -6,7 +6,7 @@
 ![Budgeting App Screenshot](/markdown/screenshot.png)
 
 ## What is this?
-A simple, unserious tool to guesstimate how much money should be allocated to certain things we all spend money on. This assumes you work a W9 job, and handles zero complex cases.
+A simple, unserious tool to guesstimate how much money should be allocated to certain things we all spend money on. This assumes you work a W2 job, and handles zero complex cases.
 
 ## Why?
 To learn some react and javascript.
